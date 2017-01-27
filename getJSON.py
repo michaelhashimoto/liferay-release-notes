@@ -33,6 +33,7 @@ while available:
 
             details["type"] = t["fields"]["issuetype"]["name"]
             details["summary"] = t["fields"]["summary"]
+            details["url"] = "https://issues.liferay.com/browse/%s" % (key)
 
             issue[key] = details
 
