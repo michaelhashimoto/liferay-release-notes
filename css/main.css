@@ -1,0 +1,22 @@
+#main h1 {
+	text-align: center;
+}
+
+#fix-packs {
+	float: left;
+	width: 20%;
+}
+
+#release-notes {
+	float: right;
+	width: 80%
+}
+
+#release-notes table {
+	border: solid 1px;
+	border-color: gray;
+}
+
+#release-notes td {
+	text-align: left;
+}
