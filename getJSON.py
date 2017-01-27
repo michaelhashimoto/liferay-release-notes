@@ -2,40 +2,51 @@
 
 import json
 import requests
+import collections
 
 s = requests.Session()
 
-label = "liferay-fixpack-de-10-7010"
+available = True
+version = 1
 
-# TODO Don't hardcode fix pack numbers
-# Get all fix packs
+final = {}
 
-result = s.get('https://issues.liferay.com/rest/api/2/search?jql=labels=%s' % (label))
+while available:
+    result = s.get('https://issues.liferay.com/rest/api/2/search?jql=labels=liferay-fixpack-de-%s-7010' % (str(version)))
 
-full = result.json()
+    result_json = result.json()
 
-all_issues = {}
+    if result_json["total"] == 0:
+        if version != 4:
+            available = False
 
-for t in full["issues"]:
-    key = t["key"]
+    if available:
+        all_issues = {}
 
-    issue = {}
+        components = collections.defaultdict(list)
 
-    issue["type"] = t["fields"]["issuetype"]["name"]
-    issue["summary"] = t["fields"]["summary"]
+        for t in result_json["issues"]:
+            key = t["key"]
 
-    components = []
+            issue = {}
+            details = {}
 
-    for c in t["fields"]["components"]:
-        components.append(c["name"])
+            details["type"] = t["fields"]["issuetype"]["name"]
+            details["summary"] = t["fields"]["summary"]
 
-    issue["components"] = components
+            issue[key] = details
 
-    all_issues[key] = issue
+            for c in t["fields"]["components"]:
+                name = c["name"]
 
-final_json = json.dumps(all_issues)
+                components[name].append(issue)
+
+        final['liferay-fixpack-de-%s-7010' % (str(version))] = components
+
+    version += 1
+
+final_json = json.dumps(final)
 print final_json
-
 
 # Filter for:
 # LPS
