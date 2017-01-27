@@ -47,18 +47,3 @@ while available:
 
 final_json = json.dumps(final)
 print final_json
-
-# Filter for:
-# LPS
-# LPE
-# Label
-
-# Filter out:
-# Private issues
-
-# Data:
-# Type, Key, Summary, Component
-
-# Features:
-# Component clickable links
-# Drop down to show older realeases
