@@ -15,6 +15,12 @@
 #release-notes table {
 	border: solid 1px;
 	border-color: gray;
+	margin-bottom: 10px;
+	width: 100%
+}
+
+#release-notes tr:first-child {
+	background: #ddd;
 }
 
 #release-notes td {
