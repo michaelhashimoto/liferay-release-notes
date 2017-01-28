@@ -52,4 +52,6 @@ while available:
 final = sorted(final.items(), key=operator.itemgetter(0))
 final = collections.OrderedDict(final)
 final_json = json.dumps(final)
-print final_json
+
+with open('output.json', 'w') as outfile:
+    json.dump(final, outfile)
