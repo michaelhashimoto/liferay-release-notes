@@ -74,7 +74,13 @@ function populateNav() {
 		nav.innerHTML = "liferay-fixpack-de-" + fixPack + "-7010";
 
 		nav.addEventListener('click', function(event) {
-			populateTable(data[event.target.getAttribute("data")]);
+			var version = event.target.getAttribute("data");
+
+			if (version == 4) {
+				version = 3;
+			}
+
+			populateTable(data[version]);
 		});
 
 		div.appendChild(nav);
