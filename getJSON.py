@@ -44,10 +44,12 @@ while available:
                 components[name].append(issue)
 
         components = sorted(components.items(), key=operator.itemgetter(0))
+        components = collections.OrderedDict(components)
         final[version] = components
 
     version += 1
 
 final = sorted(final.items(), key=operator.itemgetter(0))
+final = collections.OrderedDict(final)
 final_json = json.dumps(final)
 print final_json
