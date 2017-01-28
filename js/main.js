@@ -9,12 +9,20 @@ function populateTable(fixPack) {
 	for (var component in fixPack) {
 		var table  = document.createElement('table');
 
-		table.insertRow().insertCell().appendChild(document.createTextNode(component));
+		var link = document.createElement('a');
+
+		link.setAttribute('id',  component);
+
+		link.innerHTML = component;
+
+		table.insertRow().insertCell().appendChild(link);
 
 		fillTable(table, fixPack[component]);
 
 		div.appendChild(table);
 	}
+
+	populateComponentLinks(fixPack);
 }
 
 function fillTable(table, tickets) {
@@ -35,6 +43,26 @@ function fillTable(table, tickets) {
 			tr.insertCell().appendChild(rowDiv);
 		}
 	}
+}
+
+function populateComponentLinks(fixPack) {
+	var div = document.getElementById("component-links");
+
+	div.innerHTML = '<ul>';
+
+	for (var component in fixPack) {
+		var list = document.createElement('li');
+		var link = document.createElement('a');
+
+		link.setAttribute('href', 'index.html#' + component);
+		link.innerHTML = component;
+
+		list.appendChild(link);
+
+		div.appendChild(list);
+	}
+
+	div.innerHTML += "</ul>";
 }
 
 function populateNav() {
