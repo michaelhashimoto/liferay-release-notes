@@ -1,10 +1,21 @@
+#main {
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
 #main h1 {
 	text-align: center;
 }
 
 #fix-packs {
 	float: left;
+	list-style: none;
 	width: 20%;
+}
+
+#fix-packs li {
+	cursor: pointer;
+	padding: 2px;
 }
 
 #release-notes {
@@ -14,6 +25,7 @@
 
 #release-notes table {
 	border: solid 1px;
+	border-collapse: collapse;
 	border-color: gray;
 	margin-bottom: 10px;
 	width: 100%
@@ -24,5 +36,6 @@
 }
 
 #release-notes td {
+	padding: 5px;
 	text-align: left;
 }

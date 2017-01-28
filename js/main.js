@@ -9,7 +9,7 @@ function populateTable(fixPack) {
 	for (var component in fixPack) {
 		var table  = document.createElement('table');
 
-		table.insertRow().appendChild(document.createTextNode(component));
+		table.insertRow().insertCell().appendChild(document.createTextNode(component));
 
 		fillTable(table, fixPack[component]);
 
