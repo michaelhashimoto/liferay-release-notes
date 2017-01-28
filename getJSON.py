@@ -13,7 +13,7 @@ version = 1
 final = {}
 
 while available:
-    result = s.get('https://issues.liferay.com/rest/api/2/search?jql=labels=liferay-fixpack-de-%s-7010' % (str(version)))
+    result = s.get('https://issues.liferay.com/rest/api/2/search?jql=labels=liferay-fixpack-de-%s-7010' % (version))
 
     result_json = result.json()
 
