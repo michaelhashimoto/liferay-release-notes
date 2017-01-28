@@ -7,7 +7,7 @@
 	text-align: center;
 }
 
-#fix-packs {
+#nav {
 	float: left;
 	list-style: none;
 	width: 20%;
@@ -38,4 +38,8 @@
 #release-notes td {
 	padding: 5px;
 	text-align: left;
+}
+
+#component-links li {
+	padding-bottom: 5px;
 }
