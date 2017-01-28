@@ -1,8 +1,9 @@
 #!/usr/bin/env python
 
-import json
-import requests
 import collections
+import json
+import operator
+import requests
 
 s = requests.Session()
 
@@ -42,9 +43,11 @@ while available:
 
                 components[name].append(issue)
 
-        final['liferay-fixpack-de-%s-7010' % (str(version))] = components
+        components = sorted(components.items(), key=operator.itemgetter(0))
+        final[version] = components
 
     version += 1
 
+final = sorted(final.items(), key=operator.itemgetter(0))
 final_json = json.dumps(final)
 print final_json
