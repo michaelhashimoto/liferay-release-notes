@@ -49,7 +49,7 @@ while available:
 
     version += 1
 
-final = sorted(final.items(), key=operator.itemgetter(0))
+final = sorted(final.items(), key=operator.itemgetter(0), reverse=True)
 final = collections.OrderedDict(final)
 final_json = json.dumps(final)
 
