@@ -3,9 +3,11 @@
 import collections
 import json
 import operator
-import requests
 
-s = requests.Session()
+try:
+    import urllib.request as urlrequest
+except ImportError:
+    import urllib as urlrequest
 
 available = True
 version = 1
@@ -13,9 +15,9 @@ version = 1
 final = {}
 
 while available:
-    result = s.get('https://issues.liferay.com/rest/api/2/search?jql=labels=liferay-fixpack-de-%s-7010' % (version))
-
-    result_json = result.json()
+    url = 'https://issues.liferay.com/rest/api/2/search?jql=labels=liferay-fixpack-de-%s-7010' % (version)
+    result = urlrequest.urlopen(url)
+    result_json = json.loads(result.read())
 
     if result_json["total"] == 0:
         if version != 4:
