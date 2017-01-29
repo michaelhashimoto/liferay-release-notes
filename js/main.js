@@ -67,22 +67,40 @@ function populateComponentLinks(fixPack) {
 function populateNav() {
 	var div = document.getElementById("fix-packs");
 
+	var select = document.createElement('select');
+
+	select.setAttribute("id", "fix-pack-select");
+	select.setAttribute("onchange", "selectFixPack()");
+
+	div.appendChild(select);
+
+	var option = document.createElement('option');
+
+	option.setAttribute("disabled", "");
+	option.setAttribute("selected", "");
+	option.innerHTML = "--Select--";
+
+	select.appendChild(option);
+
 	for (var fixPack in data) {
-		var nav = document.createElement('li');
+		var option = document.createElement('option');
 
-		nav.setAttribute("data", fixPack);
-		nav.innerHTML = "liferay-fixpack-de-" + fixPack + "-7010";
+		option.setAttribute("data", fixPack);
+		option.setAttribute("value", fixPack);
+		option.innerHTML = "liferay-fixpack-de-" + fixPack + "-7010";
 
-		nav.addEventListener('click', function(event) {
-			var version = event.target.getAttribute("data");
-
-			if (version == 4) {
-				version = 3;
-			}
-
-			populateTable(data[version]);
-		});
-
-		div.appendChild(nav);
+		select.appendChild(option);
 	}
+}
+
+function selectFixPack() {
+	var select = document.getElementById('fix-pack-select');
+
+	var selectValue = select.value;
+
+	if (selectValue == 4) {
+		selectValue = 3;
+	}
+
+	populateTable(data[selectValue]);
 }
