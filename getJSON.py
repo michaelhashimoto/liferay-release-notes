@@ -3,6 +3,8 @@
 import collections
 import json
 import operator
+import os
+import shutil
 
 try:
     import urllib.request as urlrequest
@@ -55,5 +57,16 @@ final = sorted(final.items(), key=operator.itemgetter(0), reverse=True)
 final = collections.OrderedDict(final)
 final_json = json.dumps(final)
 
-with open('output.json', 'w') as outfile:
-    json.dump(final, outfile)
+old = open('js/main.js', 'r')
+old.readline()
+
+new = open('js/main1.js', 'w')
+new.write("var data = %s\n" % (final_json))
+
+shutil.copyfileobj(old, new)
+
+old.close()
+new.close()
+
+os.remove('js/main.js')
+shutil.move('js/main1.js', 'js/main.js')
