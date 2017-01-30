@@ -4,6 +4,7 @@ import collections
 import json
 import operator
 import os
+import re
 import shutil
 
 try:
@@ -45,7 +46,10 @@ while available:
             for c in t["fields"]["components"]:
                 name = c["name"]
 
-                components[name].append(issue)
+                base_name = re.sub(' >(.*)', '', name)
+
+                if not any(entry == issue for entry in components[base_name]):
+                    components[base_name].append(issue)
 
         components = sorted(components.items(), key=operator.itemgetter(0))
         components = collections.OrderedDict(components)
