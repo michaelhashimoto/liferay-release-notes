@@ -5,6 +5,14 @@ function populateTable(fixPack) {
 
 	div.innerHTML = '';
 
+	var h2  = document.createElement('h2');
+
+	var select = document.getElementById('fix-pack-select');
+
+	h2.innerHTML = "liferay-fixpack-de-" + select.value + "-7010";
+
+	div.appendChild(h2);
+
 	for (var component in fixPack) {
 		var table  = document.createElement('table');
 
