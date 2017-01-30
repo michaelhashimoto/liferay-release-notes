@@ -74,3 +74,5 @@ new.close()
 
 os.remove('js/main.js')
 shutil.move('js/main1.js', 'js/main.js')
+
+print("done")
