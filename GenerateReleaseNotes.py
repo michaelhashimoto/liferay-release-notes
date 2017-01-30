@@ -6,6 +6,7 @@ import operator
 import os
 import re
 import shutil
+import sys
 
 try:
     import urllib.request as urlrequest
@@ -60,6 +61,8 @@ while available:
 final = sorted(final.items(), key=operator.itemgetter(0), reverse=True)
 final = collections.OrderedDict(final)
 final_json = json.dumps(final)
+
+os.chdir(sys.path[0])
 
 old = open('js/main.js', 'r')
 old.readline()
