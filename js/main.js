@@ -61,7 +61,7 @@ function populateComponentLinks(fixPack) {
 		var list = document.createElement('li');
 		var link = document.createElement('a');
 
-		link.setAttribute('href', 'index.html#' + component);
+		link.setAttribute('href', '#' + component);
 		link.innerHTML = component;
 
 		list.appendChild(link);
